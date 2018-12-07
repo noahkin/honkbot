@@ -36,6 +36,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     message: 'Pong!'
                 });
             break;
+
             // !gamble
             case 'gamble':
                 if (user == "KyloRennington") {
@@ -51,6 +52,22 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     });
                 }
             break;
+
+            // !northerngeese posts northen geese faces
+            case 'northerngeese':
+                bot.sendMessage({
+                    to: channelID,
+                    message: ":yetinate: :james: :kaleb:"
+                });
+            break;
+
+            // !southerngeese posts southern geese faces
+            case 'southerngeese':
+            bot.sendMessage({
+                to: channelID,
+                message: ":coolbob: :bill: :dan: :jacob: :jake: :kelly: :kyle: :noah:"
+            });
+        break;
          }
      }
 
