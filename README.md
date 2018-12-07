@@ -1,3 +1,3 @@
 # honkbot
 it honks
-![honk](http://http://files.gooseboys.net/goose_attack.jpg)
+![honk](noahkin.github.com/honkbot/important_files/goose_attack.jpg)
