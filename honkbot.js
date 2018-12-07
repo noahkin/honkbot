@@ -20,7 +20,7 @@ bot.on('ready', function (evt) {
     logger.info(bot.username + ' - (' + bot.id + ')');
 });
 
-sleep(3000) // this is awful
+await sleep(3000) // this is awful
 
 // Get Emojis
 const coolbob = bot.emojis.find(emoji => emoji.name === "coolbob");
