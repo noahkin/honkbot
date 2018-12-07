@@ -21,7 +21,17 @@ bot.on('ready', function (evt) {
 });
 
 // Get Emojis
-const emojiList = bot.emojis.map(e=>e.toString()).join(" ");
+const coolbob = bot.emojis.find(emoji => emoji.name === "coolbob");
+const bill = bot.emojis.find(emoji => emoji.name === "bill");
+const dan = bot.emojis.find(emoji => emoji.name === "dan");
+const jacob = bot.emojis.find(emoji => emoji.name === "jacob");
+const jake = bot.emojis.find(emoji => emoji.name === "jake");
+const kelly = bot.emojis.find(emoji => emoji.name === "kelly");
+const kyle = bot.emojis.find(emoji => emoji.name === "kyle");
+const noah = bot.emojis.find(emoji => emoji.name === "noah");
+const yetinate = bot.emojis.find(emoji => emoji.name === "yetinate");
+const james = bot.emojis.find(emoji => emoji.name === "james");
+const kaleb = bot.emojis.find(emoji => emoji.name === "kaleb");
 
 // Listener for responding to chat messages
 bot.on('message', function (user, userID, channelID, message, evt) {
@@ -37,14 +47,6 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 bot.sendMessage({
                     to: channelID,
                     message: 'Pong!'
-                });
-            break;
-
-            // !listemojis
-            case 'ping':
-                bot.sendMessage({
-                    to: channelID,
-                    message: emojiList
                 });
             break;
 
@@ -68,7 +70,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             case 'northerngeese':
                 bot.sendMessage({
                     to: channelID,
-                    message: ":yetinate: :james: :kaleb:"
+                    message: "${yetinate} ${james}: ${kaleb}"
                 });
             break;
 
@@ -76,7 +78,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             case 'southerngeese':
             bot.sendMessage({
                 to: channelID,
-                message: ":coolbob: :bill: :dan: :jacob: :jake: :kelly: :kyle: :noah:"
+                message: "${coolbob} ${bill} ${dan} ${jacob} ${jake} ${kelly} ${kyle} ${noah}"
             });
         break;
         }
