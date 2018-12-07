@@ -20,6 +20,9 @@ bot.on('ready', function (evt) {
     logger.info(bot.username + ' - (' + bot.id + ')');
 });
 
+// Get Emojis
+const emojiList = message.guild.emojis.map(e=>e.toString()).join(" ");
+
 // Listener for responding to chat messages
 bot.on('message', function (user, userID, channelID, message, evt) {
     // Commands that start with "!"
@@ -34,6 +37,14 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 bot.sendMessage({
                     to: channelID,
                     message: 'Pong!'
+                });
+            break;
+
+            // !listemojis
+            case 'ping':
+                bot.sendMessage({
+                    to: channelID,
+                    message: emojiList
                 });
             break;
 
@@ -68,7 +79,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 message: ":coolbob: :bill: :dan: :jacob: :jake: :kelly: :kyle: :noah:"
             });
         break;
-         }
+        }
      }
 
      // Responds to "honk" with "honk". This is the most important feature.
