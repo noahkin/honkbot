@@ -1,3 +1,9 @@
+/*
+HONKBOT
+he honk
+https://github.com/noahkin/honkbot
+*/
+
 let Discord = require('discord.io');
 let logger = require('winston');
 let auth = require('./auth.json');
@@ -14,11 +20,15 @@ let bot = new Discord.Client({
    token: auth.token,
    autorun: true
 });
+
 bot.on('ready', function (evt) {
     logger.info('Connected');
     logger.info('Logged in as: ');
     logger.info(bot.username + ' - (' + bot.id + ')');
 });
+
+// Initialize the goosechat
+let goosechat = bot.guilds.get()
 
 // Listener for responding to chat messages
 bot.on('message', function (user, userID, channelID, message, evt) {
@@ -55,6 +65,12 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
             // !northerngeese posts northen geese faces
             case 'northerngeese':
+                if (!message.guild) {
+                    break;
+                }
+                const yetinate = message.guild.emojis.find(emoji => emoji.name === "yetinate");
+                const james = message.guild.emojis.find(emoji => emoji.name === "james");
+                const kaleb = message.guild.emojis.find(emoji => emoji.name === "kaleb");
                 bot.sendMessage({
                     to: channelID,
                     message: "${yetinate} ${james} ${kaleb}"
@@ -63,11 +79,22 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
             // !southerngeese posts southern geese faces
             case 'southerngeese':
-            bot.sendMessage({
-                to: channelID,
-                message: "${coolbob} ${bill} ${dan} ${jacob} ${jake} ${kelly} ${kyle} ${noah}"
-            });
-        break;
+                if (!message.guild) {
+                    break;
+                }
+                const coolbob = message.guild.emojis.find(emoji => emoji.name === "coolbob");
+                const bill = message.guild.emojis.find(emoji => emoji.name === "bill");
+                const dan = message.guild.emojis.find(emoji => emoji.name === "dan");
+                const jacob = message.guild.emojis.find(emoji => emoji.name === "jacob");
+                const jake = message.guild.emojis.find(emoji => emoji.name === "jake");
+                const kelly = message.guild.emojis.find(emoji => emoji.name === "kelly");
+                const kyle = message.guild.emojis.find(emoji => emoji.name === "kyle");
+                const noah = message.guild.emojis.find(emoji => emoji.name === "noah");
+                bot.sendMessage({
+                    to: channelID,
+                    message: "${coolbob} ${bill} ${dan} ${jacob} ${jake} ${kelly} ${kyle} ${noah}"
+                });
+            break;
         }
      }
 
