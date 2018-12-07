@@ -1,0 +1,15 @@
+{
+  "name": "honkbot",
+  "version": "0.0.0",
+  "description": "honk",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "a goose",
+  "license": "BSD",
+  "dependencies": {
+    "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+    "winston": "^2.4.4"
+  }
+}
