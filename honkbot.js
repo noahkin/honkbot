@@ -38,7 +38,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             break;
             // gamble
             case 'gamble':
-                if (user == "MR. BEAN SHAPIRO") {
+                if (user == "KyloRennington") {
                     // get beaned kyle
                     bot.sendMessage({
                         to: channelID,
