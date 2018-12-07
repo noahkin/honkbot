@@ -36,7 +36,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     message: 'Pong!'
                 });
             break;
-            // gamble
+            // !gamble
             case 'gamble':
                 if (user == "KyloRennington") {
                     // get beaned kyle
