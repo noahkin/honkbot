@@ -55,14 +55,25 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
             // !northerngeese posts northen geese faces
             case 'northerngeese':
+                const yetinate = bot.emojis.find(emoji => emoji.name === "yetinate");
+                const james = bot.emojis.find(emoji => emoji.name === "james");
+                const kaleb = bot.emojis.find(emoji => emoji.name === "kaleb");
                 bot.sendMessage({
                     to: channelID,
-                    message: "${yetinate} ${james}: ${kaleb}"
+                    message: "${yetinate} ${james} ${kaleb}"
                 });
             break;
 
             // !southerngeese posts southern geese faces
             case 'southerngeese':
+            const coolbob = bot.emojis.find(emoji => emoji.name === "coolbob");
+            const bill = bot.emojis.find(emoji => emoji.name === "bill");
+            const dan = bot.emojis.find(emoji => emoji.name === "dan");
+            const jacob = bot.emojis.find(emoji => emoji.name === "jacob");
+            const jake = bot.emojis.find(emoji => emoji.name === "jake");
+            const kelly = bot.emojis.find(emoji => emoji.name === "kelly");
+            const kyle = bot.emojis.find(emoji => emoji.name === "kyle");
+            const noah = bot.emojis.find(emoji => emoji.name === "noah");
             bot.sendMessage({
                 to: channelID,
                 message: "${coolbob} ${bill} ${dan} ${jacob} ${jake} ${kelly} ${kyle} ${noah}"
