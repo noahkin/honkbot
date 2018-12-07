@@ -27,9 +27,6 @@ bot.on('ready', function (evt) {
     logger.info(bot.username + ' - (' + bot.id + ')');
 });
 
-// Initialize the goosechat
-let goosechat = bot.guilds.get()
-
 // Listener for responding to chat messages
 bot.on('message', function (user, userID, channelID, message, evt) {
     // Commands that start with "!"
