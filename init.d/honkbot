@@ -17,7 +17,7 @@ status)
    if [ -e /var/run/honkbot.pid ]; then
       echo honkbot is running, pid=`cat /var/run/honkbot.pid`
    else
-      echo honkbot.sh is NOT running
+      echo honkbot is NOT running
       exit 1
    fi
    ;;

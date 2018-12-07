@@ -20,6 +20,8 @@ bot.on('ready', function (evt) {
     logger.info(bot.username + ' - (' + bot.id + ')');
 });
 
+sleep(3000) // this is awful
+
 // Get Emojis
 const coolbob = bot.emojis.find(emoji => emoji.name === "coolbob");
 const bill = bot.emojis.find(emoji => emoji.name === "bill");
@@ -124,3 +126,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
      }
 });
 
+// lmao
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
