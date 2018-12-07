@@ -21,7 +21,7 @@ bot.on('ready', function (evt) {
 });
 
 // Get Emojis
-const emojiList = bot.guild.emojis.map(e=>e.toString()).join(" ");
+const emojiList = bot.emojis.map(e=>e.toString()).join(" ");
 
 // Listener for responding to chat messages
 bot.on('message', function (user, userID, channelID, message, evt) {
