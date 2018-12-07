@@ -54,7 +54,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     break;
                 }
                 let say_message = ""
-                for (let i = 1; i < args.length; i++) {
+                for (let i = 0; i < args.length; i++) {
                     say_message += args[i]
                     say_message += " "
                 }
