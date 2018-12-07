@@ -2,7 +2,7 @@
   "name": "honkbot",
   "version": "0.0.0",
   "description": "honk",
-  "main": "bot.js",
+  "main": "honkbot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
