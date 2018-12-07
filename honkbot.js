@@ -40,7 +40,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             case 'ping':
                 bot.sendMessage({
                     to: channelID,
-                    message: 'Pong!'
+                    message: message.type
                 });
             break;
 
@@ -69,9 +69,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     });
                     break;
                 }
-                const yetinate = message.guild.emojis.find(emoji => emoji.name === "yetinate");
-                const james = message.guild.emojis.find(emoji => emoji.name === "james");
-                const kaleb = message.guild.emojis.find(emoji => emoji.name === "kaleb");
+                let yetinate = message.guild.emojis.find(emoji => emoji.name === "yetinate");
+                let james = message.guild.emojis.find(emoji => emoji.name === "james");
+                let kaleb = message.guild.emojis.find(emoji => emoji.name === "kaleb");
                 bot.sendMessage({
                     to: channelID,
                     message: `${yetinate} ${james} ${kaleb}`
@@ -87,14 +87,14 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     });
                     break;
                 }
-                const coolbob = message.guild.emojis.find(emoji => emoji.name === "coolbob");
-                const bill = message.guild.emojis.find(emoji => emoji.name === "bill");
-                const dan = message.guild.emojis.find(emoji => emoji.name === "dan");
-                const jacob = message.guild.emojis.find(emoji => emoji.name === "jacob");
-                const jake = message.guild.emojis.find(emoji => emoji.name === "jake");
-                const kelly = message.guild.emojis.find(emoji => emoji.name === "kelly");
-                const kyle = message.guild.emojis.find(emoji => emoji.name === "kyle");
-                const noah = message.guild.emojis.find(emoji => emoji.name === "noah");
+                let coolbob = message.guild.emojis.find(emoji => emoji.name === "coolbob");
+                let bill = message.guild.emojis.find(emoji => emoji.name === "bill");
+                let dan = message.guild.emojis.find(emoji => emoji.name === "dan");
+                let jacob = message.guild.emojis.find(emoji => emoji.name === "jacob");
+                let jake = message.guild.emojis.find(emoji => emoji.name === "jake");
+                let kelly = message.guild.emojis.find(emoji => emoji.name === "kelly");
+                let kyle = message.guild.emojis.find(emoji => emoji.name === "kyle");
+                let noah = message.guild.emojis.find(emoji => emoji.name === "noah");
                 bot.sendMessage({
                     to: channelID,
                     message: `${coolbob} ${bill} ${dan} ${jacob} ${jake} ${kelly} ${kyle} ${noah}`
