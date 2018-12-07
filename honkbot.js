@@ -62,6 +62,14 @@ bot.on('message', function (user, userID, channelID, message, evt) {
          });
      }
 
+     // Also honkbot hanks now
+     if (message.toLowerCase().includes("hank") && user != "honkbot") {
+        bot.sendMessage({
+            to: channelID,
+            message: "hank"
+        });
+    }
+
     /* Fuck Strodl Bot
     Does the mocking spongebob text thing to whatever Strodl Bot says. I should extend this to include other users.
     If there is no text to mock, simply tells Strodl Bot to fuck off. */
