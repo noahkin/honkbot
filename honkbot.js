@@ -63,9 +63,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 }
             break;
 
-            // !northerngeese posts northen geese faces
+            // !northerngeese posts northern geese faces
             case 'northerngeese':
                 if (!message.guild) {
+                    bot.sendMessage({
+                        to: channelID,
+                        message: "guild error honk"
+                    });
                     break;
                 }
                 const yetinate = message.guild.emojis.find(emoji => emoji.name === "yetinate");
@@ -73,13 +77,17 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 const kaleb = message.guild.emojis.find(emoji => emoji.name === "kaleb");
                 bot.sendMessage({
                     to: channelID,
-                    message: "${yetinate} ${james} ${kaleb}"
+                    message: `${yetinate} ${james} ${kaleb}`
                 });
             break;
 
             // !southerngeese posts southern geese faces
             case 'southerngeese':
                 if (!message.guild) {
+                    bot.sendMessage({
+                        to: channelID,
+                        message: "guild error honk"
+                    });
                     break;
                 }
                 const coolbob = message.guild.emojis.find(emoji => emoji.name === "coolbob");
@@ -92,7 +100,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 const noah = message.guild.emojis.find(emoji => emoji.name === "noah");
                 bot.sendMessage({
                     to: channelID,
-                    message: "${coolbob} ${bill} ${dan} ${jacob} ${jake} ${kelly} ${kyle} ${noah}"
+                    message: `${coolbob} ${bill} ${dan} ${jacob} ${jake} ${kelly} ${kyle} ${noah}`
                 });
             break;
         }
