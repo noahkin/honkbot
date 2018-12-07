@@ -40,7 +40,27 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             case 'ping':
                 bot.sendMessage({
                     to: channelID,
-                    message: message
+                    message: "Pong!"
+                });
+            break;
+
+            // !say
+            case 'say':
+                if (user != "Noah") {
+                    bot.sendMessage({
+                        to: channelID,
+                        message: "ur not the boss of me"
+                    });
+                    break;
+                }
+                let say_message = ""
+                for (let i = 1; i < args.length; i++) {
+                    say_message += args[i]
+                    say_message += " "
+                }
+                bot.sendMessage({
+                    to: channelID,
+                    message: say_message
                 });
             break;
 
