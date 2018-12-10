@@ -23,7 +23,7 @@ let bot = new Discord.Client({
 });
 
 bot.on('ready', function (evt) {
-    logging.readyLogging();
+    logging.readyLogging(bot.username, bot.id);
 });
 
 // Listener for responding to chat messages

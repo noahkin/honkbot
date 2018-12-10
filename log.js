@@ -9,10 +9,10 @@ globalLoggingSettings = () => {
     logger.level = 'debug';
 };
 
-readyLogging = () => {
+readyLogging = (botName, botId) => {
     logger.info('Connected');
     logger.info('Logged in as: ');
-    logger.info(bot.username + ' - (' + bot.id + ')');
+    logger.info(botName + ' - (' + botId + ')');
 };
 
 module.exports = {globalLoggingSettings, readyLogging};
