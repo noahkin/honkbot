@@ -5,68 +5,67 @@ https://github.com/noahkin/honkbot
 */
 
 let Discord = require('discord.io');
-let logger = require('winston');
 let auth = require('./auth.json');
+let logging = require('./log.js');
 
-// Configure logger settings
-logger.remove(logger.transports.Console);
-logger.add(logger.transports.Console, {
-    colorize: true
-});
-logger.level = 'debug';
+const users = {
+    "noah": "Noah",
+    "jordan": "jhoover",
+    "kyle": "KyloRennington",
+};
+
+logging.globalLoggingSettings();
 
 // Initialize Discord Bot
 let bot = new Discord.Client({
-   token: auth.token,
-   autorun: true
+    token: auth.token,
+    autorun: true
 });
 
 bot.on('ready', function (evt) {
-    logger.info('Connected');
-    logger.info('Logged in as: ');
-    logger.info(bot.username + ' - (' + bot.id + ')');
+    logging.readyLogging(bot.username, bot.id);
 });
 
 // Listener for responding to chat messages
 bot.on('message', function (user, userID, channelID, message, evt) {
     // Commands that start with "!"
-    if (message.substring(0, 1) == '!') {
+    if (message.substring(0, 1) === '!') {
         let args = message.substring(1).split(' ');
         let cmd = args[0];
 
         args = args.splice(1);
-        switch(cmd) {
+        switch (cmd) {
             // !ping
             case 'ping':
                 bot.sendMessage({
                     to: channelID,
                     message: "Pong!"
                 });
-            break;
+                break;
 
             // !say
             case 'say':
-                if (user != "Noah") {
+                if (user !== users['noah'] && user !== users['jordan']) {
                     bot.sendMessage({
                         to: channelID,
                         message: "ur not the boss of me"
                     });
                     break;
                 }
-                let say_message = ""
+                let say_message = "";
                 for (let i = 0; i < args.length; i++) {
-                    say_message += args[i]
+                    say_message += args[i];
                     say_message += " "
                 }
                 bot.sendMessage({
                     to: channelID,
                     message: say_message
                 });
-            break;
+                break;
 
             // !gamble
             case 'gamble':
-                if (user == "KyloRennington") {
+                if (user === users['kyle']) {
                     // get beaned kyle
                     bot.sendMessage({
                         to: channelID,
@@ -78,7 +77,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                         message: "you win"
                     });
                 }
-            break;
+                break;
 
             // !northerngeese posts northern geese faces
             case 'northerngeese':
@@ -96,7 +95,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     to: channelID,
                     message: `${yetinate} ${james} ${kaleb}`
                 });
-            break;
+                break;
 
             // !southerngeese posts southern geese faces
             case 'southerngeese':
@@ -119,20 +118,20 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     to: channelID,
                     message: `${coolbob} ${bill} ${dan} ${jacob} ${jake} ${kelly} ${kyle} ${noah}`
                 });
-            break;
+                break;
         }
-     }
+    }
 
-     // Responds to "honk" with "honk". This is the most important feature.
-     if (message.toLowerCase().includes("honk") && user != "honkbot") {
-         bot.sendMessage({
-             to: channelID,
-             message: "honk"
-         });
-     }
+    // Responds to "honk" with "honk". This is the most important feature.
+    if (message.toLowerCase().includes("honk") && user !== "honkbot") {
+        bot.sendMessage({
+            to: channelID,
+            message: "honk"
+        });
+    }
 
-     // Also honkbot hanks now
-     if (message.toLowerCase().includes("hank") && user != "honkbot") {
+    // Also honkbot hanks now
+    if (message.toLowerCase().includes("hank") && user !== "honkbot") {
         bot.sendMessage({
             to: channelID,
             message: "hank"
@@ -142,23 +141,23 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     /* Fuck Strodl Bot
     Does the mocking spongebob text thing to whatever Strodl Bot says. I should extend this to include other users.
     If there is no text to mock, simply tells Strodl Bot to fuck off. */
-     if (user == "Strodl Bot") {
-        let mocking_message = ""
-        let sufficiently_mocked = false
+    if (user === "Strodl Bot") {
+        let mocking_message = "";
+        let sufficiently_mocked = false;
         for (let i = 0; i < message.length; i++) {
-            letter = message.charAt(i)
+            let letter = message.charAt(i);
             if (Math.random() <= 0.5) {
-                letter = letter.toUpperCase()
+                letter = letter.toUpperCase();
                 sufficiently_mocked = true
             }
             mocking_message += letter
         }
-        if (mocking_message == "" || sufficiently_mocked == false) {
+        if (mocking_message === "" || !sufficiently_mocked) {
             mocking_message = "fuck u Strodl Bot"
         }
         bot.sendMessage({
             to: channelID,
             message: mocking_message
         });
-     }
+    }
 });
