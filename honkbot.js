@@ -45,7 +45,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
             // !say
             case 'say':
-                if (user !== users['noah'] || user !== users['jordan']) {
+                if (user !== users['noah'] && user !== users['jordan']) {
                     bot.sendMessage({
                         to: channelID,
                         message: "ur not the boss of me"
