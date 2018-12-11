@@ -50,6 +50,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                         to: channelID,
                         message: "ur not the boss of me"
                     });
+                    bot.deleteMessage(message.id);
                     break;
                 }
                 let say_message = "";
@@ -122,42 +123,45 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         }
     }
 
-    // Responds to "honk" with "honk". This is the most important feature.
-    if (message.toLowerCase().includes("honk") && user !== "honkbot") {
-        bot.sendMessage({
-            to: channelID,
-            message: "honk"
-        });
-    }
+    honk(user, message, channelID);
 
-    // Also honkbot hanks now
-    if (message.toLowerCase().includes("hank") && user !== "honkbot") {
-        bot.sendMessage({
-            to: channelID,
-            message: "hank"
-        });
-    }
-
-    /* Fuck Strodl Bot
-    Does the mocking spongebob text thing to whatever Strodl Bot says. I should extend this to include other users.
-    If there is no text to mock, simply tells Strodl Bot to fuck off. */
     if (user === "Strodl Bot") {
-        let mocking_message = "";
-        let sufficiently_mocked = false;
-        for (let i = 0; i < message.length; i++) {
-            let letter = message.charAt(i);
-            if (Math.random() <= 0.5) {
-                letter = letter.toUpperCase();
-                sufficiently_mocked = true
-            }
-            mocking_message += letter
-        }
-        if (mocking_message === "" || !sufficiently_mocked) {
-            mocking_message = "fuck u Strodl Bot"
-        }
-        bot.sendMessage({
-            to: channelID,
-            message: mocking_message
-        });
+        fuckStrodlBot();
     }
 });
+
+// Responds to "honk" with "honk". This is the most important feature.
+function honk(usr, msg, channelID) {
+    const regex = /^.*(h[ao]nk).*$/;
+    let match = msg.toLowerCase().match(regex);
+
+    if (match && usr !== "honkbot") {
+        bot.sendMessage({
+            to: channelID,
+            message: match[1]
+        });
+    }
+}
+
+/* Fuck Strodl Bot
+Does the mocking spongebob text thing to whatever Strodl Bot says. I should extend this to include other users.
+If there is no text to mock, simply tells Strodl Bot to fuck off. */
+function fuckStrodlBot(msg) {
+    let mocking_message = "";
+    let sufficiently_mocked = false;
+    for (let i = 0; i < msg.length; i++) {
+        let letter = msg.charAt(i);
+        if (Math.random() <= 0.5) {
+            letter = letter.toUpperCase();
+            sufficiently_mocked = true
+        }
+        mocking_message += letter
+    }
+    if (mocking_message === "" || !sufficiently_mocked) {
+        mocking_message = "fuck u Strodl Bot"
+    }
+    bot.sendMessage({
+        to: channelID,
+        message: mocking_message
+    });
+}
