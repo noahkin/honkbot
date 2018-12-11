@@ -57,6 +57,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     say_message += args[i];
                     say_message += " "
                 }
+                bot.deleteMessage(message.id);
                 bot.sendMessage({
                     to: channelID,
                     message: say_message
