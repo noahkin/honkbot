@@ -7,12 +7,7 @@ https://github.com/noahkin/honkbot
 const Discord = require('discord.io');
 const auth = require('./auth.json');
 const logging = require('./log.js');
-
-const users = {
-    'noah': 'Noah',
-    'jordan': 'jhoover',
-    'kyle': 'KyloRennington',
-};
+const honkFeatures = require('./honkFeatures.js');
 
 logging.globalLoggingSettings();
 
@@ -45,7 +40,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
             // !say
             case 'say':
-                let sayMessage = makeBotSay(user, args);
+                let sayMessage = honkFeatures.makeBotSay(user, args);
                 bot.sendMessage({
                     to: channelID,
                     message: sayMessage
@@ -54,7 +49,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
 
             // !gamble
             case 'gamble':
-                if (user === users['kyle']) {
+                if (user === honkFeatures.users['kyle']) {
                     // get beaned kyle
                     bot.sendMessage({
                         to: channelID,
@@ -69,51 +64,21 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                 break;
 
             // !northerngeese posts northern geese faces
-            case 'northerngeese':
+            case 'northerngeese' || 'southerngeese':
+                let msg = honkFeatures.createGeeseFaceResponse(message.guild);
                 if (!message.guild) {
                     bot.sendMessage({
                         to: channelID,
-                        message: 'guild error honk'
+                        message: msg
                     });
                     break;
                 }
-                let yetinate = message.guild.emojis.find(emoji => emoji.name === "yetinate");
-                let james = message.guild.emojis.find(emoji => emoji.name === "james");
-                let kaleb = message.guild.emojis.find(emoji => emoji.name === "kaleb");
-                bot.sendMessage({
-                    to: channelID,
-                    message: `${yetinate} ${james} ${kaleb}`
-                });
-                break;
-
-            // !southerngeese posts southern geese faces
-            case 'southerngeese':
-                if (!message.guild) {
-                    bot.sendMessage({
-                        to: channelID,
-                        message: 'guild error honk'
-                    });
-                    break;
-                }
-                let coolbob = message.guild.emojis.find(emoji => emoji.name === 'coolbob');
-                let bill = message.guild.emojis.find(emoji => emoji.name === 'bill');
-                let dan = message.guild.emojis.find(emoji => emoji.name === 'dan');
-                let jacob = message.guild.emojis.find(emoji => emoji.name === 'jacob');
-                let jake = message.guild.emojis.find(emoji => emoji.name === 'jake');
-                let kelly = message.guild.emojis.find(emoji => emoji.name === 'kelly');
-                let kyle = message.guild.emojis.find(emoji => emoji.name === 'kyle');
-                let noah = message.guild.emojis.find(emoji => emoji.name === 'noah');
-                bot.sendMessage({
-                    to: channelID,
-                    message: `${coolbob} ${bill} ${dan} ${jacob} ${jake} ${kelly} ${kyle} ${noah}`
-                });
-                break;
         }
     }
 
     // Responds to "h[oa]nk" with "h[oa]nk". This is the most important feature.
-    let honkMsg = honkMsg(msg);
-    if (honkMsg && usr !== 'honkbot') {
+    let honkMsg = honkFeatures.honkMsg(message);
+    if (honkMsg && user !== 'honkbot') {
         bot.sendMessage({
             to: channelID,
             message: honkMsg
@@ -121,62 +86,10 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     }
 
     if (user === 'Strodl Bot') {
-        let mockingMessage = fuckStrodlBot();
+        let mockingMessage = honkFeatures.fuckStrodlBot(message);
         bot.sendMessage({
             to: channelID,
             message: mockingMessage
         });
     }
 });
-
-const makeBotSay = (usr, wordArr) => {
-    let sayMsg = '';
-
-    if (usr !== users['noah'] && usr !== users['jordan']) {
-        return 'ur not the boss of me';
-    }
-
-    for (let i = 0; i < wordArr.length; i++) {
-        sayMsg += wordArr[i];
-        sayMsg += ' ';
-    }
-
-    return sayMsg;
-};
-
-const honkMsg = msg => {
-    const regex = /^.*(h[ao]nk).*$/;
-    let match = msg.toLowerCase().match(regex);
-
-    if (!match) {
-        return '';
-    }
-
-    return match[1];
-};
-
-/*
-* Fuck Strodl Bot
-* Does the mocking spongebob text thing to whatever Strodl Bot says. I should extend this to include other users.
-* If there is no text to mock, simply tells Strodl Bot to fuck off.
-*/
-const fuckStrodlBot = msg => {
-    let mockingMsg = '';
-    let sufficientlyMocked = false;
-
-    for (let i = 0; i < msg.length; i++) {
-        let letter = msg.charAt(i);
-        if (Math.random() <= 0.5) {
-            letter = letter.toUpperCase();
-            sufficientlyMocked = true
-        }
-        mockingMsg += letter
-    }
-    if (mockingMsg === '' || !sufficientlyMocked) {
-        mockingMsg = 'fuck u Strodl Bot';
-    }
-
-    return mockingMsg;
-};
-
-module.exports = {honkMsg, fuckStrodlBot, makeBotSay};
