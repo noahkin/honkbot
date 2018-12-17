@@ -4,12 +4,18 @@
   "description": "honk",
   "main": "honkbot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "test:coverage": "nyc mocha"
   },
   "author": "a goose",
   "license": "BSD",
   "dependencies": {
     "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
     "winston": "^2.4.4"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0"
   }
 }
