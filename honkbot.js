@@ -85,6 +85,15 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         });
     }
 
+    // I M A G I N E
+    let imagine = honkFeatures.imagine(message);
+    if (imagine && user !== 'honkbot') {
+        bot.sendMessage({
+            to: channelID,
+            message: honkMsg
+        });
+    }
+
     if (user === 'Strodl Bot') {
         let mockingMessage = honkFeatures.fuckStrodlBot(message);
         bot.sendMessage({
